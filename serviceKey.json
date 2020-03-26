@@ -1,0 +1,12 @@
+{
+  "type": "<Account_Type>",
+  "project_id": "<Project_Id>",
+  "private_key_id": "<Private_Key_Id>",
+  "private_key": "<Private_Key>",
+  "client_email": "<Client_Email>",
+  "client_id": "<Client_Id>",
+  "auth_uri": "<Auth_Uri>",
+  "token_uri": "<Token_Uri>",
+  "auth_provider_x509_cert_url": "<Auth_Provider>",
+  "client_x509_cert_url": "<Client_x509_Cert_Url>"
+}
