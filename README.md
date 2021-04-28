@@ -1,5 +1,5 @@
 # nodejs-firebase
-Node.js CRUD application using Firebase
+CRUD operations using Node.js, Firebase
 
 ## firebase-admin
 
