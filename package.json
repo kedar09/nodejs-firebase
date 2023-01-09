@@ -11,7 +11,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "firebase-admin": "^8.10.0",
+    "firebase-admin": "^11.4.1",
     "joi-phone-number": "^4.1.0",
     "morgan": "~1.9.1"
   }
