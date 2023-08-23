@@ -1,14 +1,23 @@
 var firebaseSettings = require('../../config/firebaseConfig');
 var dbFirestore = firebaseSettings.firestore();
+const { v4: uuidv4 } = require('uuid');
 
 exports.getAllUser = async function (result) {
-    const snapshot = await dbFirestore.collection('users').get();
+    const snapshot = await dbFirestore.collection('user').get();
+    let resultGetAllUser = snapshot.docs.map(doc => doc.data());
+    result(null, resultGetAllUser);  
+};
+
+exports.getAllTask = async function (result) {
+    const snapshot = await dbFirestore.collection('task').get();
     let resultGetAllUser = snapshot.docs.map(doc => doc.data());
     result(null, resultGetAllUser);  
 };
 
 exports.getUserById = function (userId, result) {
-    dbFirestore.collection('users').doc(userId).get().then((doc) => {
+    console.log(userId,"jhhjgjhgjhgj")
+    dbFirestore.collection('task').where("taskId","==","1c315386-e237-4ad7-a6ae-3b55a3752b68")
+    .get().then((doc) => {
         if (!doc.exists) {
             let resultGetUserById = { message: 'No such document!' };
             result(null, resultGetUserById);
@@ -21,12 +30,15 @@ exports.getUserById = function (userId, result) {
 };
 
 exports.addUser = function (body, result) {
+
     let docRef = dbFirestore.collection('users').doc();
     let setDoc = docRef.set({
-        name: body.name,
-        address: body.address,
+        // name: body.name,
+        // address: body.address,
+        userId: uuidv4(),
         email: body.email,
-        mobileNo: body.mobileNo
+        // mobileNo: body.mobileNo
+        password: body.password
     }).then(()=> {
         let resultAddUser = { message: 'User Inserted Successfully' };
         result(null, resultAddUser);
@@ -37,11 +49,31 @@ exports.addUser = function (body, result) {
     });   
 };
 
+exports.addTask = function (body, result) {
+
+    let docRef = dbFirestore.collection('task').doc();
+    let setDoc = docRef.set({
+        taskId: uuidv4(),
+        taskTitle: body.taskTitle,
+        taskDiscription: body.taskDiscription,
+        createdAt: body.createdAt,
+        status: body.status,
+    }).then(()=> {
+        let resultAddUser = { message: 'Task Add Successfully' };
+        result(null, resultAddUser);
+    }).catch((error)=>{
+        console.log(error); 
+        let resultAddUser = { message: 'Failed to add task' };
+        result(null, resultAddUser);
+    });   
+};
+
 exports.updateUser = function (body, result) {
     dbFirestore.collection('users').doc(body.userId).get().then((snapshot) => {
         if (snapshot.exists) {
-            let docRef = dbFirestore.collection('users').doc(body.userId);
+            let docRef = dbFirestore.collection('task').doc(body.userId);
             docRef.update({
+                
                 name: body.name,
                 address: body.address,
                 email: body.email,

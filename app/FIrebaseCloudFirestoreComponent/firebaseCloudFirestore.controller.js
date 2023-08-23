@@ -9,6 +9,15 @@ exports.getAllUser = function (req, res) {
         }
     });
 };
+exports.getAllTask = function (req, res) {
+    firebaseCloudFirestoreModel.getAllTask(function (error, result) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.status(200).send(result);
+        }
+    });
+};
 
 exports.getUserById = function (req, res) {
     firebaseCloudFirestoreModel.getUserById(req.params.userId, function (error, result) {
@@ -22,6 +31,16 @@ exports.getUserById = function (req, res) {
 
 exports.addUser = function (req, res) {
     firebaseCloudFirestoreModel.addUser(req.body, function (error, result) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.status(200).send(result);
+        }
+    });
+};
+
+exports.addTask = function (req, res) {
+    firebaseCloudFirestoreModel.addTask(req.body, function (error, result) {
         if (error) {
             res.send(error);
         } else {
