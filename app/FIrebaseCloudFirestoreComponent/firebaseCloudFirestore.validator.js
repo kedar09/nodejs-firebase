@@ -13,17 +13,13 @@ exports.getAllTask = function (req, res) {
   };
 
 exports.getUserById = async function (req, res) {
-  let data = req.params;
-  console.log(req.params)
-  const schema = Joi.object({
-    userId: Joi.string().min(3).max(50).required(),
-  });
-  const { error } = await schema.validate(data);
-  if (error) {
-    res.status(400).send({ error: error.details[0].message });
-  } else {
-    firebaseCloudFirestoreController.getUserById(req, res);
-  }
+    try {
+        let data = req.body;
+        firebaseCloudFirestoreController.getUserById(req, res);
+    }
+    catch(error){
+        console.log(err);
+    }
 };
 
 exports.addUser = async function (req, res) {

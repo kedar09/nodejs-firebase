@@ -20,7 +20,7 @@ exports.getAllTask = function (req, res) {
 };
 
 exports.getUserById = function (req, res) {
-    firebaseCloudFirestoreModel.getUserById(req.params.userId, function (error, result) {
+    firebaseCloudFirestoreModel.getUserById(req.body, function (error, result) {
         if (error) {
             res.send(error);
         } else {
