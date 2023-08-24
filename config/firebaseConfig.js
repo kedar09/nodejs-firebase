@@ -3,7 +3,7 @@ var serviceAccount = require("../serviceKey.json");
 
 var firebaseSettings = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://<Database_Name>.firebaseio.com"
+  databaseURL: "https://manegeo-b4370-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 
 module.exports = firebaseSettings;
